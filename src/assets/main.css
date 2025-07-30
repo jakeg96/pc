@@ -1,0 +1,30 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Silkscreen';
+  src: url('/fonts/slkscr.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pixel';
+  src: url('/fonts/pixel_operator/PixelOperator.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PixelBold';
+  src: url('/fonts/pixel_operator/PixelOperator-Bold.ttf') format('truetype');
+  font-weight: 400;
+  font-style: bold;
+  font-display: swap;
+}
+
+
+@theme {
+  --font-pixelbold: 'pixelBold', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Pixel', ui-sans-serif, system-ui, sans-serif;
+}
