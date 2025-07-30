@@ -25,6 +25,6 @@
 
 
 @theme {
-  --font-pixelbold: 'pixelBold', ui-sans-serif, system-ui, sans-serif;
+  --font-pixelbold: 'PixelBold', ui-sans-serif, system-ui, sans-serif;
   --font-sans: 'Pixel', ui-sans-serif, system-ui, sans-serif;
 }

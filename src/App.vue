@@ -6,7 +6,7 @@ import { Icon } from '@iconify/vue'
   <div>
     <header class="flex items-center bg-zinc-200 text-zinc-700 gap-4 pl-4 pt-1 pb-1 rounded-t-2xl border-b border-zinc-700">
       <Icon icon="streamline-pixel:coding-apps-websites-programming-browser" class="size-4" />
-      <button class="text-md font-pixelbold">jake.dev</button>
+      <button class="text-md font-pixelbold">jakegreen.dev</button>
       <button class="text-md hover:text-zinc-400">File</button>
       <button class="text-md hover:text-zinc-400">Edit</button>
       <button class="text-md hover:text-zinc-400">View</button>
