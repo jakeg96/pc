@@ -11,7 +11,10 @@ const terminalOn = ref(false)
     <header
       class="flex items-center bg-zinc-200 text-zinc-700 py-1 rounded-t-2xl border-b border-zinc-700"
     >
-      <Icon icon="streamline-pixel:coding-apps-websites-programming-browser" class="size-4 ml-4 mr-2" />
+      <Icon
+        icon="streamline-pixel:coding-apps-websites-programming-browser"
+        class="size-4 ml-4 mr-2"
+      />
       <div class="flex gap-4">
         <button class="font-pixelbold active:bg-zinc-600 active:text-white rounded-[6px]">
           jakegreen.dev
@@ -24,7 +27,11 @@ const terminalOn = ref(false)
     </header>
     <body>
       <div>
-        <Terminal v-if="terminalOn" @terminal-on="terminalOn = $event"  class="w-9/12 max-w-130 h-60"/>
+        <Terminal
+          v-if="terminalOn"
+          @terminal-on="terminalOn = $event"
+          class="w-9/12 max-w-130 h-60"
+        />
       </div>
       <div class="flex flex-col fixed top-7/12 left-3/12 items-center justify-center">
         <Icon
