@@ -1,34 +1,54 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
-import { ref, defineEmits } from 'vue'
-
-const card = ref(undefined)
+import { ref } from 'vue'
+const card = ref<HTMLElement>()
 let startX = 10,
     startY = 10
 
-const dragCard = (e: any) => {
-  const cardElement: any = card.value
+const dragCard = (e: MouseEvent | TouchEvent) => {
+  // Prevent default to avoid scrolling on mobile
+  e.preventDefault()
+  
+  const cardElement = card.value
+  if (!cardElement) return
 
-  const rect = cardElement?.getBoundingClientRect()
-  startX = e.clientX - rect.left
-  startY = e.clientY - rect.top
+  const rect = cardElement.getBoundingClientRect()
+  
+  // Get the correct client coordinates for both mouse and touch events
+  const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX
+  const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY
+  
+  startX = clientX - rect.left
+  startY = clientY - rect.top
 
-  const onMouseMove = (event: any) => {
-    const x = event.clientX - startX
-    const y = event.clientY - startY
+  const onMove = (event: MouseEvent | TouchEvent) => {
+    event.preventDefault()
+    
+    // Get coordinates for both mouse and touch events
+    const moveClientX = 'touches' in event ? event.touches[0].clientX : event.clientX
+    const moveClientY = 'touches' in event ? event.touches[0].clientY : event.clientY
+    
+    const x = moveClientX - startX
+    const y = moveClientY - startY
 
     cardElement.style.position = 'fixed'
     cardElement.style.left = `${x}px`
     cardElement.style.top = `${y}px`
+    cardElement.style.zIndex = '1000'
   }
 
-  const onMouseUp = () => {
-    window.removeEventListener('mousemove', onMouseMove)
-    window.removeEventListener('mouseup', onMouseUp)
+  const onEnd = () => {
+    // Remove both mouse and touch event listeners
+    window.removeEventListener('mousemove', onMove)
+    window.removeEventListener('mouseup', onEnd)
+    window.removeEventListener('touchmove', onMove)
+    window.removeEventListener('touchend', onEnd)
   }
 
-  window.addEventListener('mousemove', onMouseMove)
-  window.addEventListener('mouseup', onMouseUp)
+  // Add both mouse and touch event listeners
+  window.addEventListener('mousemove', onMove, { passive: false })
+  window.addEventListener('mouseup', onEnd)
+  window.addEventListener('touchmove', onMove, { passive: false })
+  window.addEventListener('touchend', onEnd)
 }
 
 const emits = defineEmits<{
@@ -38,15 +58,16 @@ const emits = defineEmits<{
 
 <template>
   <div
-    class="relative border bg-zinc-400 border-zinc-900 rounded-[6px] z-10"
+    class="relative border bg-zinc-400 border-zinc-900 rounded-[6px] z-10 touch-none"
     ref="card"
     @mousedown="dragCard"
+    @touchstart="dragCard"
   >
     <div
       class="flex justify-between items-center border-b border-zinc-900 select-none bg-zinc-300 rounded-t-[6px]"
     >
       <div
-        class="px-2 text-zinc-700 -md active:bg-zinc-600 active:text-white rounded-[4px]"
+        class="px-2 text-zinc-700 active:bg-zinc-600 active:text-white rounded-[4px] cursor-pointer"
         @click="emits('terminalOn', false)"
       >
         x
