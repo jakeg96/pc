@@ -59,16 +59,19 @@ const emits = defineEmits<{
 
 <template>
   <div class="relative border bg-zinc-400 border-zinc-900 rounded-[6px] z-10 touch-none" ref="card">
-    <div
-      class="flex items-center border-b border-zinc-900 select-none bg-zinc-300 rounded-t-[6px]"
-    >
+    <div class="flex items-center border-b border-zinc-900 select-none bg-zinc-300 rounded-t-[6px]">
       <div
         class="px-2 text-zinc-700 active:bg-zinc-600 active:text-white rounded-[4px] cursor-pointer"
-        @click="emits('terminalOn', false)" @touch="emits('terminalOn', false)"
+        @click="emits('terminalOn', false)"
+        @touch="emits('terminalOn', false)"
       >
         x
       </div>
-      <div class="flex items-center justify-center w-full" @mousedown="dragCard" @touchstart="dragCard">
+      <div
+        class="flex items-center justify-center w-full"
+        @mousedown="dragCard"
+        @touchstart="dragCard"
+      >
         <div class="rounded-[6px] border-x px-0.5 border-zinc-700">
           <div class="rounded-[6px] border-x-2 px-0.5 border-zinc-700">
             <div class="rounded-[6px] border-x-4 px-0.5 border-zinc-700">
@@ -78,9 +81,9 @@ const emits = defineEmits<{
         </div>
       </div>
       <Icon
-          icon="streamline-pixel:coding-apps-websites-programming-browser"
-          class="size-4 mx-1 text-zinc-900"
-        />
+        icon="streamline-pixel:coding-apps-websites-programming-browser"
+        class="size-4 mx-1 text-zinc-900"
+      />
     </div>
     <div class="flex flex-col text-zinc-900 px-1">
       <div>jake@jakegreen ~ %</div>
